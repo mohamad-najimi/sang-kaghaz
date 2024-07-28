@@ -47,30 +47,45 @@ def draw_button(screen, rect, color, textcolor, text):
 
 def play_game(player1):
     game_list = ["rock", "paper", "scissor"]
-    print(f"player choice: {player1}")
-    player2 = random.choice(game_list)
-    print(f"computer choice: {player2}")
 
-    if player1 == player2:
-       print ("equal")
+    button_rect = pygame.Rect (50 , 180 , 160 , 50)
+    draw_button (screen , button_rect , GREEN , WHITE , player1)
+
+    
+    computer = random.choice(game_list)
+    button_rect = pygame.Rect (425 , 180 , 160 , 50)
+    draw_button (screen , button_rect , GREEN , WHITE , computer)
+
+
+
+    if player1 == computer:
+        button_rect = pygame.Rect(230, 265, 180, 50)
+        draw_button(screen, button_rect , RED , BLUE, "equal")
     elif player1 == "rock":
-        if player2 == "scissor":
-          print ("player1 wins")
+        if computer == "scissor":
+            button_rect = pygame.Rect(230, 265, 180, 50)
+            draw_button(screen, button_rect , RED , BLUE, "player wins")
         else :
-          print ("computer wins")
+            button_rect = pygame.Rect(230, 265, 180, 50)
+            draw_button(screen, button_rect , RED , BLUE, "computer wins")
     elif player1 == "paper":
-        if player2 == "rock":
-          print("player1 wins")
+        if computer == "rock":
+            button_rect = pygame.Rect(230, 265, 180, 50)
+            draw_button(screen, button_rect , RED , BLUE, "player wins")
         else:
-          print("computer wins")
+            button_rect = pygame.Rect(230, 265, 180, 50)
+            draw_button(screen, button_rect , RED , BLUE, "computer wins")
     elif player1 == "scissor":
-        if player2 == "paper":
-         print("player1 wins")
+        if  computer == "paper":
+            button_rect = pygame.Rect(230, 265, 180, 50)
+            draw_button(screen, button_rect , RED , BLUE, "player wins")
         else:
-         print("computer wins")
+            button_rect = pygame.Rect(230, 265, 180, 50)
+            draw_button(screen, button_rect , RED , BLUE, "computer wins")
     else:
-         print("invalid input!")
-        
+        button_rect = pygame.Rect(230, 265, 180 , 50)
+        draw_button(screen, button_rect , RED , BLUE, "invalid input!")  
+    pygame.display.flip()      
 running = True  
 
 screen.fill(WHITE)
@@ -106,10 +121,23 @@ while running:
                     screen.fill(WHITE)
                     draw_images()
                     button_rect = pygame.Rect(243, 265, 160, 50)
-                    draw_button(screen, button_rect , RED , BLUE, "HELLO")
+                    draw_button(screen, button_rect , RED , BLUE, "play")
+
+                    button_rect = pygame.Rect(230, 265, 180 , 50)
+                    draw_button(screen, button_rect , RED , BLUE ,"" )  
+
+                    button_rect = pygame.Rect (50 , 180 , 160 , 50)
+                    draw_button (screen , button_rect , GREEN , WHITE , "player")
+
+                    button_rect = pygame.Rect (425 , 180 , 160 , 50)
+                    draw_button (screen , button_rect , GREEN , WHITE , "computer")
 
                     button_rect = pygame.Rect(0 , 0 , 150 , 50)
-                    draw_button(screen , button_rect , GREEN , BLUE ,"BYE")
+                    draw_button(screen , button_rect , GREEN , BLUE ,"score")
+
+                    button_rect = pygame.Rect(490 , 0 , 150 , 50)
+                    draw_button (screen , button_rect , GREEN , BLUE , "score")
+
                     pygame.display.flip()
                     playing = True
             else:
