@@ -13,7 +13,9 @@ screen=pygame.display.set_mode((width, height))
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
-
+RED = (255 , 0 , 0)
+YELLOW = (255 , 255 , 0)
+GREEN = (0 , 128 , 0)
 # تعریف فونت
 font = pygame.font.Font(None, 36)
 
@@ -36,14 +38,16 @@ except pygame.error as e:
     print(f"Failed to load image: {e}")
     sys.exit(1)
 
-def draw_button(screen, rect, text):
-    pygame.draw.rect(screen, BLUE, rect)
-    text_surface = font.render(text, True, WHITE)
+def draw_button(screen, rect, color, textcolor, text):
+    pygame.draw.rect(screen, color, rect)
+    text_surface = font.render(text, True, textcolor)
     text_rect = text_surface.get_rect(center=rect.center)
     screen.blit(text_surface, text_rect)
-    
+
+
 def play_game(player1):
     game_list = ["rock", "paper", "scissor"]
+    print(f"player choice: {player1}")
     player2 = random.choice(game_list)
     print(f"computer choice: {player2}")
 
@@ -69,31 +73,49 @@ def play_game(player1):
         
 running = True  
 
-while running:
-    screen.fill(WHITE)
+screen.fill(WHITE)
+
+
+#pygame.draw.rect(screen, BLUE, rect1, 1)
+#pygame.draw.rect(screen, BLUE, rect2, 2)
+#pygame.draw.rect(screen, BLUE, rect3, 3)
+
+button_rect = pygame.Rect(220, 200, 200, 50)
+draw_button(screen, button_rect , BLUE , YELLOW, "Play")
+
+
+pygame.display.flip()
+
+
+def draw_images():
     screen.blit(img1 , rect1)
     screen.blit(img2 , rect2)
     screen.blit(img3 , rect3)
-    pygame.draw.rect(screen, BLUE, rect1, 1)
-    pygame.draw.rect(screen, BLUE, rect2, 2)
-    pygame.draw.rect(screen, BLUE, rect3, 3)
 
-    button_rect = pygame.Rect(220, 200, 200, 50)
-    draw_button(screen, button_rect, "Play")
-
+playing = False
+while running:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             running = False
             pygame.quit()
             sys.exit(0)
         elif event.type == pygame.MOUSEBUTTONDOWN:  
-            if button_rect.collidepoint(event.pos):
-                print("The button was pressed")
-            if rect1.collidepoint(event.pos):
-                play_game("rock")
-            elif rect2.collidepoint(event.pos):
-                play_game("paper")
-            elif rect3.collidepoint(event.pos):
-                play_game("scissor")
-    pygame.display.flip()
+            if not playing:
+                if button_rect.collidepoint(event.pos):
+                    print("The play button was pressed")
+                    screen.fill(WHITE)
+                    draw_images()
+                    button_rect = pygame.Rect(243, 265, 160, 50)
+                    draw_button(screen, button_rect , RED , BLUE, "HELLO")
 
+                    button_rect = pygame.Rect(0 , 0 , 150 , 50)
+                    draw_button(screen , button_rect , GREEN , BLUE ,"BYE")
+                    pygame.display.flip()
+                    playing = True
+            else:
+                if rect1.collidepoint(event.pos):
+                    play_game("rock")
+                elif rect2.collidepoint(event.pos):
+                    play_game("paper")
+                elif rect3.collidepoint(event.pos):
+                    play_game("scissor")
