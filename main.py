@@ -19,17 +19,17 @@ GREEN = (0 , 128 , 0)
 PURPLE = (128 , 0 , 128)
 Aqua = (0 , 255 , 255)
 try:
-    img1 = pygame.transform.scale(pygame.image.load('pictur/01.png') , [125 , 125])
+    img1 = pygame.transform.scale(pygame.image.load('pictur/01.png') , [130 , 130])
     img1 = img1.convert()
     rect1 = img1.get_rect()
-    rect1.topleft = (100 , 350)
+    rect1.topleft = (100 , 343)
 
-    img2 = pygame.transform.scale(pygame.image.load("pictur/02.png") ,[125 , 125])
+    img2 = pygame.transform.scale(pygame.image.load("pictur/02.png") ,[130 , 130])
     img2 = img2.convert()
     rect2 = img2.get_rect()
     rect2.bottomright = (380 , 473)
 
-    img3 = pygame.transform.scale(pygame.image.load("pictur/03.png") , [125 , 125])
+    img3 = pygame.transform.scale(pygame.image.load("pictur/03.png") , [130 , 130])
     img3 = img3.convert()
     rect3 = img3.get_rect()
     rect3.center = (470, 410)
@@ -117,9 +117,9 @@ def draw_images():
     screen.blit(img1 , rect1)
     screen.blit(img2 , rect2)
     screen.blit(img3 , rect3)
-    pygame.draw.rect(screen, PURPLE , rect1, 1)
-    pygame.draw.rect(screen, YELLOW , rect2, 2)
-    pygame.draw.rect(screen, RED , rect3, 3)
+    #pygame.draw.rect(screen, PURPLE , rect1, 1)
+    #pygame.draw.rect(screen, YELLOW , rect2, 2)
+    #pygame.draw.rect(screen, RED , rect3, 3)
 
 playing = False
 while running:
